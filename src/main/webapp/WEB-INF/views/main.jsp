@@ -19,7 +19,15 @@
 		<c:forEach items="${monthList}" var="month">
 			<option value="${month}">${month}</option>
 		</c:forEach>
-	</select> <p> <input type="submit" /> </p>
+	</select>
+	<p>
+		<input type="submit" />
+	</p>
+	<p>
+		vlookup<br> <form><input type="text" size="40" placeholder="lookup value"><br> <input type="text" size="40" placeholder="table array"><br>
+		<input type="text" size="40" placeholder="col index num"><br> <input type="text" size="40" placeholder="range lookup"><br>
+		<input type="submit" />
 </form>
+</p></form>
 </body>
 </html>
