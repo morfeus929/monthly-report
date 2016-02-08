@@ -8,8 +8,7 @@ public class MonthlyReportDTO {
 	private int year;
 	private List<String> data;
 
-	public MonthlyReportDTO(String month, int year, List<String> data) {
-		super();
+	public MonthlyReportDTO(final String month, final int year, final List<String> data) {
 		this.month = month;
 		this.year = year;
 		this.data = data;
@@ -19,7 +18,7 @@ public class MonthlyReportDTO {
 		return month;
 	}
 
-	public void setMonth(String month) {
+	public void setMonth(final String month) {
 		this.month = month;
 	}
 
@@ -27,7 +26,7 @@ public class MonthlyReportDTO {
 		return year;
 	}
 
-	public void setYear(int year) {
+	public void setYear(final int year) {
 		this.year = year;
 	}
 
@@ -35,7 +34,7 @@ public class MonthlyReportDTO {
 		return data;
 	}
 
-	public void setData(List<String> data) {
+	public void setData(final List<String> data) {
 		this.data = data;
 	}
 

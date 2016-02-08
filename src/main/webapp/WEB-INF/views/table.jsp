@@ -8,7 +8,7 @@
 <title>Monthly report</title>
 </head>
 <body>
-	<table>
+	<table cellspacing="2" border="1" cellpadding="5">
 		<tr>
 			<td>Year</td>
 			<td>Month</td>

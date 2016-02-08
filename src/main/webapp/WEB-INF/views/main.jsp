@@ -19,7 +19,7 @@
 		<c:forEach items="${monthList}" var="month">
 			<option value="${month}">${month}</option>
 		</c:forEach>
-	</select> <input type="submit" />
+	</select> <p> <input type="submit" /> </p>
 </form>
 </body>
 </html>

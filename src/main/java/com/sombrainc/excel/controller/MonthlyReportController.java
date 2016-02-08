@@ -13,8 +13,10 @@ import com.sombrainc.excel.util.Constant;
 @Controller
 public class MonthlyReportController {
 
+	private final MonthlyReportService service = new MonthlyReportService();
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String printMain(ModelMap model) {
+	public String printMain(final ModelMap model) {
 		model.addAttribute("monthList", Constant.months);
 		model.addAttribute("yearList", Constant.years);
 		model.addAttribute("msg", "Monthly Report");
@@ -22,10 +24,9 @@ public class MonthlyReportController {
 	}
 
 	@RequestMapping(value = "/table", method = RequestMethod.POST)
-	public ModelAndView printTable(@RequestParam(value = "month") String month,
-			@RequestParam(value = "year") String year) {
-		ModelAndView model = new ModelAndView();
-		model.addObject("report", new MonthlyReportService().getData(month, Integer.parseInt(year)));
+	public ModelAndView printTable(@RequestParam(value = "month") final String month, @RequestParam(value = "year") final String year) {
+		final ModelAndView model = new ModelAndView();
+		model.addObject("report", service.getData(month, Integer.parseInt(year)));
 		return model;
 	}
 }
