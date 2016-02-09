@@ -6,9 +6,9 @@ public class MonthlyReportDTO {
 
 	private String month;
 	private int year;
-	private List<String> data;
+	private List<List<String>> data;
 
-	public MonthlyReportDTO(final String month, final int year, final List<String> data) {
+	public MonthlyReportDTO(final String month, final int year, final List<List<String>> data) {
 		this.month = month;
 		this.year = year;
 		this.data = data;
@@ -30,11 +30,11 @@ public class MonthlyReportDTO {
 		this.year = year;
 	}
 
-	public List<String> getData() {
+	public List<List<String>> getData() {
 		return data;
 	}
 
-	public void setData(final List<String> data) {
+	public void setData(final List<List<String>> data) {
 		this.data = data;
 	}
 

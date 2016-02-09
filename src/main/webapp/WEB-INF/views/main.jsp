@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -23,11 +24,9 @@
 	<p>
 		<input type="submit" />
 	</p>
-	<p>
-		vlookup<br> <form><input type="text" size="40" placeholder="lookup value"><br> <input type="text" size="40" placeholder="table array"><br>
-		<input type="text" size="40" placeholder="col index num"><br> <input type="text" size="40" placeholder="range lookup"><br>
-		<input type="submit" />
 </form>
-</p></form>
+<p>
+	<button onclick="window.location.href='/excel/vlookup'">Vlookup</button>
+</p>
 </body>
 </html>

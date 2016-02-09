@@ -29,4 +29,21 @@ public class MonthlyReportController {
 		model.addObject("report", service.getData(month, Integer.parseInt(year)));
 		return model;
 	}
+
+	@RequestMapping(value = "/vlookup", method = RequestMethod.GET)
+	public String printVlookup(final ModelMap model) {
+		model.addAttribute("monthList", Constant.months);
+		model.addAttribute("yearList", Constant.years);
+		model.addAttribute("msg", "Vlookup");
+		return "vlookupform";
+	}
+
+	@RequestMapping(value = "/vlookup", method = RequestMethod.POST)
+	public String runVlookup(@RequestParam(value = "value") final String value, @RequestParam(value = "range") final String range,
+			@RequestParam(value = "column") final String column, @RequestParam(value = "rangelookup") final String rangelookup,
+			final ModelMap model) {
+		model.addAttribute("vlookup", service.executeVlookup(value, range, Integer.parseInt(column), rangelookup));
+		model.addAttribute("msg", "Vlookup");
+		return "vlookup";
+	}
 }
