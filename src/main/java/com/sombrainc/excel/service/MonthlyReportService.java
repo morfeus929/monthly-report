@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellValue;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 
@@ -72,38 +71,8 @@ public class MonthlyReportService {
 		cell.setCellFormula(formula);
 		System.out.println(formula);
 		final FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
-		// final CellValue value = evaluator.evaluate(cell);
 		final Integer type = evaluator.evaluateFormulaCell(cell);
-		// return getCellValue(cell.get);
 		return getCellValue(cell, type);
-
-		// final ClassLoader classLoader = getClass().getClassLoader();
-		// try (final FileOutputStream fileOut = new FileOutputStream(new
-		// File(classLoader.getResource("file/version1.xls").getFile()))) {
-		// wb.write(fileOut);
-		// wb.close();
-		// } catch (final IOException e) {
-		// e.printStackTrace();
-		// }
-		// return "Formula: " + row.getCell(7).getCellFormula() + " lookup
-		// value: " + lookupValue;
-	}
-
-	private static String getCellValue(final CellValue cellValue) {
-		switch (cellValue.getCellType()) {
-			case Cell.CELL_TYPE_BOOLEAN:
-				return String.valueOf(cellValue.getBooleanValue());
-			case Cell.CELL_TYPE_NUMERIC:
-				return String.valueOf(cellValue.getNumberValue());
-			case Cell.CELL_TYPE_STRING:
-				return cellValue.getStringValue();
-			case Cell.CELL_TYPE_BLANK:
-				return "<no value>";
-			case Cell.CELL_TYPE_ERROR:
-				return "<error>";
-			default:
-				return "<default>";
-		}
 	}
 
 	private static String getCellValue(final Cell cellValue, final Integer type) {
