@@ -8,7 +8,8 @@
 <body>
 	<h2>${msg}</h2>
 	<br>
-	<h3>${vlookup}</h3>
+	<h3>Formula: ${vlookup.formula}</h3>
+	<h3>Result: ${vlookup.result}</h3>
 	<input type="button" value="Back" onclick="window.history.back()" />
 </body>
 </html>

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -15,19 +16,28 @@ import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 
 import com.sombrainc.excel.dto.MonthlyReportDTO;
+import com.sombrainc.excel.dto.ResultDTO;
+import com.sombrainc.excel.util.Log;
 
 public class MonthlyReportService {
 
+	private Logger logger = Log.init(this.getClass().getName());
+	private long lastModifiedDate = -1;
+	private HSSFWorkbook workbook;
+
 	private HSSFWorkbook getWorkbook() {
-		final ClassLoader classLoader = getClass().getClassLoader();
-		HSSFWorkbook workbook = null;
 		try {
-			final String filePath = classLoader.getResource("file/version1.xls").getFile();
-			System.out.println(filePath);
-			final FileInputStream file = new FileInputStream(new File(filePath));
-			workbook = new HSSFWorkbook(file);
+			final String filePath = getClass().getClassLoader().getResource("file/version1.xls").getFile();
+			logger.info(filePath);
+			final File file = new File(filePath);
+			final FileInputStream fileIn = new FileInputStream(file);
+			if (lastModifiedDate != file.lastModified()) {
+				workbook = new HSSFWorkbook(fileIn);
+				lastModifiedDate = file.lastModified();
+			}
+
 		} catch (final IOException ioe) {
-			ioe.printStackTrace();
+			logger.error("Read file error", ioe);
 		}
 		return workbook;
 	}
@@ -56,7 +66,7 @@ public class MonthlyReportService {
 		return new MonthlyReportDTO(month, year, result);
 	}
 
-	public String executeVlookup(String lookupValue, final String range, final int columnIndex, final String rangelookup) {
+	public ResultDTO executeVlookup(String lookupValue, final String range, final int columnIndex, final String rangelookup) {
 		final HSSFWorkbook wb = getWorkbook();
 		final HSSFSheet sheet = wb.getSheetAt(0);
 		final Row row = sheet.getRow(0);
@@ -69,10 +79,10 @@ public class MonthlyReportService {
 		}
 		final String formula = "VLOOKUP(" + lookupValue + "," + range + "," + columnIndex + "," + rangelookup + ")";
 		cell.setCellFormula(formula);
-		System.out.println(formula);
+		logger.info(formula);
 		final FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
 		final Integer type = evaluator.evaluateFormulaCell(cell);
-		return getCellValue(cell, type);
+		return new ResultDTO(formula, getCellValue(cell, type));
 	}
 
 	private static String getCellValue(final Cell cellValue, final Integer type) {
