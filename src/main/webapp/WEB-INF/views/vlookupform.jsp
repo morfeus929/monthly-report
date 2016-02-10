@@ -12,8 +12,10 @@
 		<input name="value" type="text" size="40" placeholder="lookup value"><br>
 		<br> <input name="range" type="text" size="40" placeholder="table array"><br>
 		<br> <input name="column" type="text" size="40" placeholder="col index num"><br>
-		<br> range lookup<br> <label><input name="rangelookup" type="radio" value="FALSE" checked> false</label> <label><input
-			name="rangelookup" type="radio" value="TRUE"> true</label><br> <input type="submit" />
+		<br> range lookup<br>
+		<label><input name="rangelookup" type="radio" value="FALSE" checked> false</label>
+		<label><input name="rangelookup" type="radio" value="TRUE"> true</label><br>
+		<input type="submit" value="Submit" />
 		<p>
 			<input type="button" value="Back" onclick="window.history.back()" />
 		</p>

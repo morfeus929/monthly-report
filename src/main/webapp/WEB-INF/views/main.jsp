@@ -22,7 +22,7 @@
 		</c:forEach>
 	</select>
 	<p>
-		<input type="submit" />
+		<input type="submit" value="Submit" />
 	</p>
 </form>
 <p>
